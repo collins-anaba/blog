@@ -1,20 +1,22 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+import React from 'react';
 
-var indexRouter = require('./index')
+import Header from './Components/Header';
+import Footer from './Components/Footer';
+import routes from './routes';
 
-var app = express();
+function App() {
+  return (
+    <div id='wrapper'>
+      <Header />
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+      <main className='main'>
+        {routes}
+      </main>
 
+      <Footer />
 
-app.use('/', indexRouter)
+    </div>
+  );
+}
 
-module.exports = app;
+export default App;
